@@ -1,0 +1,8 @@
+{
+    "server":"0.0.0.0",
+    "server_port":8889,
+    "local_port":1080,
+    "password":"houxinghui",
+    "timeout":600,
+    "method":"chacha20"
+}
