@@ -1,0 +1,24 @@
+{
+    "debug": "false",
+    "http": {
+        "enabled":  true,
+        "listen":   "0.0.0.0:9966"
+    },
+    "graph": {
+        "connTimeout": 1500,
+        "callTimeout": 5000,
+        "maxConns": 60,
+        "maxIdle": 50,
+        "replicas": 500,
+        "cluster": {
+            "graph-00": "127.0.0.1:6070",
+            "graph-01": "192.168.84.60:6070",
+            "graph-02": "192.168.84.59:6070"
+        },
+     "api": {  
+            "query": "http://127.0.0.1:9966",     
+            "dashboard": "http://211.155.84.61:8081", 
+            "max": 500
+        }
+    }
+}

@@ -1,0 +1,28 @@
+2015/08/19 18:31:23 cfg.go:90: read config file: cfg.json successfully
+2015/08/19 18:31:23 http.go:60: http listening 0.0.0.0:6081
+2015/08/19 18:31:23 rpc.go:45: dial 127.0.0.1:6030 fail: dial tcp 127.0.0.1:6030: connection refused
+2015/08/19 18:31:23 rpc.go:24: rpc listening 0.0.0.0:6080
+2015/08/19 18:31:25 rpc.go:45: dial 127.0.0.1:6030 fail: dial tcp 127.0.0.1:6030: connection refused
+2015/08/19 18:31:29 rpc.go:45: dial 127.0.0.1:6030 fail: dial tcp 127.0.0.1:6030: connection refused
+2015/08/19 18:31:37 rpc.go:45: dial 127.0.0.1:6030 fail: dial tcp 127.0.0.1:6030: connection refused
+2015/08/19 18:36:50 cfg.go:90: read config file: cfg.json successfully
+2015/08/19 18:36:50 http.go:60: http listening 0.0.0.0:6081
+2015/08/19 18:36:50 rpc.go:24: rpc listening 0.0.0.0:6080
+2015/09/24 20:22:40 cfg.go:90: read config file: cfg.json successfully
+2015/09/24 20:22:40 http.go:60: http listening 0.0.0.0:6081
+2015/09/24 20:22:40 rpc.go:24: rpc listening 0.0.0.0:6080
+2015/09/24 20:31:38 cfg.go:90: read config file: cfg.json successfully
+2015/09/24 20:31:38 http.go:60: http listening 0.0.0.0:6081
+2015/09/24 20:31:38 rpc.go:24: rpc listening 0.0.0.0:6080
+2015/10/27 11:53:28 strategy.go:25: [ERROR] Hbs.GetStrategies: connection is shut down
+2015/10/27 22:00:11 cfg.go:90: read config file: cfg.json successfully
+2015/10/27 22:00:11 http.go:60: http listening 0.0.0.0:6081
+2015/10/27 22:00:11 rpc.go:24: rpc listening 0.0.0.0:6080
+2015/10/27 22:00:45 cfg.go:90: read config file: cfg.json successfully
+2015/10/27 22:00:45 http.go:60: http listening 0.0.0.0:6081
+2015/10/27 22:00:45 rpc.go:24: rpc listening 0.0.0.0:6080
+2015/10/27 22:01:46 strategy.go:25: [ERROR] Hbs.GetStrategies: connection is shut down
+2015/11/09 20:50:39 strategy.go:25: [ERROR] Hbs.GetStrategies: connection is shut down
+2015/11/18 17:08:59 cfg.go:90: read config file: cfg.json successfully
+2015/11/18 17:08:59 http.go:60: http listening 0.0.0.0:6081
+2015/11/18 17:08:59 rpc.go:24: rpc listening 0.0.0.0:6080
