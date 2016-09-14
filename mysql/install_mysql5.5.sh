@@ -6,7 +6,7 @@ MYSQL_DATA=/date/mysql/data
 MYSQL_LOG=/date/mysql/log
 USERNAME=mysql
 GROUP=mysql
-MYSQL_UP=/usr/local/mysql/bin/mysql -u root -h localhost --password=$DB_PASS 
+MYSQL_UP="/usr/local/mysql/bin/mysql -u root -h localhost --password=$DB_PASS" 
 ###
 grep $USERNAME  /etc/passwd >/dev/null
 if [ $? -eq 1 ];then
@@ -43,10 +43,12 @@ sed -i 's#skip-external-locking#skip-external-locking\nlog-error='$MYSQL_LOG'/er
 sed -i '/^\[mysqld\]/adatadir = /date/mysql/data' /etc/my.cnf
 sed -i '/^\[mysqld\]/abasedir = /usr/local/mysql' /etc/my.cnf
 chmod 755 /etc/init.d/mysqld
+
+
 /etc/init.d/mysqld start 
 
-sleep 2
-/usr/local/mysql/bin/mysqladmin -u root password '$DB_PASS'
+sleep 1
+/usr/local/mysql/bin/mysqladmin -u root --password=''  password $DB_PASS
 
 cd $(mkdir /root/falcon_db)
 git clone https://github.com/open-falcon/scripts.git 
