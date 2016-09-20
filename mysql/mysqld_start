@@ -1,0 +1,29 @@
+#!/bin/bash
+#####
+DB_PASS=${DB_PASS:-upyun.com}
+MYSQL_DIR=/usr/local/mysql
+MYSQL_DATA=/date/mysql/data
+MYSQL_LOG=/date/mysql/log
+MYSQL_UP="/usr/local/mysql/bin/mysql -u root -h localhost --password=$DB_PASS"
+
+###
+
+chown -R mysql.mysql  /usr/local/mysql
+chown -R mysql.mysql /date/mysql
+
+####
+echo "===========================> Install Mysql_db "
+/usr/local/mysql/scripts/mysql_install_db --user=mysql  --datadir=/date/mysql/data --basedir=/usr/local/mysql
+chmod 755 /etc/init.d/mysqld
+
+#####
+echo "============================> Start and Changge Password"
+/usr/local/mysql/bin/mysqld_safe --user mysql > /dev/null 2>&1 &
+sleep 2
+/usr/local/mysql/bin/mysqladmin -u root --password=''  password $DB_PASS
+sleep 1
+/usr/local/mysql/bin/mysqladmin  -u root --password=$DB_PASS  shutdown
+#####
+
+echo "===========================> Started"
+/usr/local/mysql/bin/mysqld_safe --user mysql

@@ -28,36 +28,16 @@ tar zxvf mysql-5.5.40-linux2.6-x86_64.tar.gz
 mv -f mysql-5.5.40-linux2.6-x86_64/* /usr/local/mysql/ > /dev/null 2>&1
 fi
 
-rm  ./mysql-5.5.40-linux2.6-x86_64.tar.gz
+rm -fr ./mysql*
 
-chown -R mysql.mysql  /usr/local/mysql
-chown -R mysql.mysql /date/mysql
-######
 
-cp -f /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
-sed -i 's#^basedir=$#basedir='$MYSQL_DIR'#' /etc/init.d/mysqld
-sed -i 's#^datadir=$#datadir='$MYSQL_DATA'#' /etc/init.d/mysqld
+#cp -f /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+#sed -i 's#^basedir=$#basedir='$MYSQL_DIR'#' /etc/init.d/mysqld
+#sed -i 's#^datadir=$#datadir='$MYSQL_DATA'#' /etc/init.d/mysqld
 cp -f /usr/local/mysql/support-files/my-medium.cnf /etc/my.cnf
 sed -i 's#skip-external-locking#skip-external-locking\nlog-error='$MYSQL_LOG'/error.log#' /etc/my.cnf
-/usr/local/mysql/scripts/mysql_install_db --user=mysql --datadir=/date/mysql/data --basedir=/usr/local/mysql
 sed -i '/^\[mysqld\]/adatadir = /date/mysql/data' /etc/my.cnf
 sed -i '/^\[mysqld\]/abasedir = /usr/local/mysql' /etc/my.cnf
-chmod 755 /etc/init.d/mysqld
+#chmod 755 /etc/init.d/mysqld
 
 
-/etc/init.d/mysqld start 
-
-sleep 1
-/usr/local/mysql/bin/mysqladmin -u root --password=''  password $DB_PASS
-
-cd $(mkdir /root/falcon_db)
-git clone https://github.com/open-falcon/scripts.git 
-cd ./scripts/
-$MYSQL_UP < db_schema/graph-db-schema.sql
-$MYSQL_UP < db_schema/dashboard-db-schema.sql
-$MYSQL_UP < db_schema/portal-db-schema.sql
-$MYSQL_UP < db_schema/links-db-schema.sql
-$MYSQL_UP < db_schema/uic-db-schema.sql
-
-sleep 1
-rm -fr /root/falcon_db
