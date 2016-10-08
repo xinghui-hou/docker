@@ -1,0 +1,27 @@
+{
+	"debug": false,
+	"http": {
+		"enabled": true,
+		"listen": "0.0.0.0:6071"
+	},
+	"rpc": {
+		"enabled": true,
+		"listen": "0.0.0.0:6070"
+	},
+	"rrd": {
+		"storage": "/disk/ssd1/graph"
+	},
+	"db": {
+		"dsn": "root:upyun.com@tcp(db:3306)/graph?loc=Local&parseTime=true",
+		"maxIdle": 80
+	},
+	"callTimeout": 5000,
+	"migrate": {
+		"enabled": false,
+		"concurrency": 2,
+		"replicas": 500,
+		"cluster": {
+			"graph-00" : "127.0.0.1:6070"
+		}
+	}
+}

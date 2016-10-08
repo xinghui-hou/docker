@@ -1,0 +1,17 @@
+##Example:
+
+### build db images
+```
+docker build -t falcon/db:0.1 .
+```
+
+
+### start falcon db server
+```
+docker run -d --name falcon-mysql \
+           -h falcon-mysql \
+           -v /disk/ssd1/mysql:/date/mysql \
+           -p 3306:3306 \
+           -p 6380:6390 \
+           falcon/db:0.1
+```

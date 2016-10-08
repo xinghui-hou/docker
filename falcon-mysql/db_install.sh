@@ -5,8 +5,10 @@ MYSQL_DATA=/date/mysql/data
 MYSQL_LOG=/date/mysql/log
 MYSQL_UP="/usr/local/mysql/bin/mysql -u root -h localhost --password=$DB_PASS"
 
+mkdir -p /date/mysql/{data,log,redis}
 chown -R mysql.mysql  /usr/local/mysql
 chown -R mysql.mysql /date/mysql
+chown root.root /date/mysql/redis
 
 ####
 echo "===========================> Install Mysql_db "
@@ -16,9 +18,10 @@ echo "===========================> Install Mysql_db "
 echo "============================> Start and Changge Password"
 /usr/local/mysql/bin/mysqld_safe --user mysql > /dev/null 2>&1 &
 sleep 2
+#######################
 /usr/local/mysql/bin/mysqladmin -u root --password=''  password $DB_PASS
+$MYSQL_UP -e "grant all on *.* to 'root'@'%' identified by '$DB_PASS'"
 
-mkdir -p /date/mysql/redis
 cd $(mkdir /root/falcon_db)
 git clone https://github.com/open-falcon/scripts.git
 cd ./scripts/
@@ -30,17 +33,8 @@ $MYSQL_UP < db_schema/uic-db-schema.sql
 
 sleep 1
 rm -fr /root/falcon_db
-###-----------------------------------------------------------------------
 
-#/usr/local/mysql/bin/mysqladmin  -u root --password=$DB_PASS  shutdown
-
-#sleep 2
-#echo "===========================> Started"
-#/usr/local/mysql/bin/mysqld_safe --user mysql > /dev/null 2>&1 &
-
-####################
-
-tar zxvf /root/redis.tar.gz -C /usr/local/
+tar zxvf /root/redis.tar.gz -C /usr/local/ ; sleep 1 ; rm -fr /root/redis.tar.gz &&  rm -fr /root/scripts
 
 /usr/local/redis-2.8.6/bin/redis-server  /usr/local/redis-2.8.6/redis.falcon.conf
 
