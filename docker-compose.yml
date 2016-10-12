@@ -1,0 +1,34 @@
+falcon-mysql:
+   build: ./falcon-mysql/.
+   command: /usr/bin/bash /root/db_install.sh
+   ports: 
+         - "3306:3306"
+         - "6380:6380"
+   volumes: 
+         - /disk/ssd1/mysql:/date/mysql 
+
+falcon-graph:
+   build: ./falcon-graph/.
+   command: /usr/bin/supervisord -n -c /etc/supervisord.conf
+   ports: 
+         - "6070:6070" 
+         - "6080:6080" 
+         - "6030:6030" 
+         - "8433:8433" 
+   volumes: 
+         - /disk/ssd1/:/disk/ssd1/falcon
+   links:
+         - falcon-mysql:db
+
+falcon-query:
+   build: ./falcon-query/.
+   command: /usr/local/open-falcon/dashboard/control start ; /usr/local/open-falcon/portal/control start ;/usr/local/open-falcon/query/control start   
+   ports: 
+         - "8081:8081"
+         - "5050:5050"
+         - "9966:9966"
+   volumes: 
+         - /disk/ssd1/falcon:/date/falcon 
+   links:
+         - falcon-mysql:falcon-mysql
+         - falcon-graph:falcon-graph

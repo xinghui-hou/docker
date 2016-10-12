@@ -1,5 +1,10 @@
 ##Example:
 
+### this image inclue
+* mysql-5.5
+* redis-2.8.6
+ 
+
 ### build db images
 ```
 docker build -t falcon/db:0.1 .
