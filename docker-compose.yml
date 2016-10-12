@@ -20,7 +20,7 @@ falcon-graph:
    links:
          - falcon-mysql:db
 
-falcon-query:
+#falcon-query:
    build: ./falcon-query/.
    command: /usr/local/open-falcon/dashboard/control start ; /usr/local/open-falcon/portal/control start ;/usr/local/open-falcon/query/control start   
    ports: 
